@@ -34,8 +34,13 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void deleteProduct(String id) async {
-    // await Productdelete((){ setState(() {});}, id, products);
+  void deleteProduct(String id,context) async {
+    await Productdelete((newProducts) {
+      setState(() {
+        products=newProducts;
+      });
+    },id, products,context);
+
 
   }
 
@@ -46,10 +51,11 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("Api Crud Application",style: TextStyle(
           color: Colors.black,
-          fontSize: 18
+          fontSize: 18,
+          fontWeight: FontWeight.bold
         ),),
         backgroundColor: Colors.white,
-        elevation: 1,
+        elevation: 0,
       ),
       body: Visibility(
         visible: loader==false,

@@ -1,6 +1,10 @@
 
 import 'dart:convert';
 import 'package:crudass/Model/Product.dart';
+import 'package:crudass/Utils/DailogBox.dart';
+import 'package:crudass/Utils/SnackBar.dart';
+import 'package:crudass/style/style.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 Future<void> getproducts(Function(List<Products>, bool) updateState) async{
@@ -32,18 +36,22 @@ Future<void> getproducts(Function(List<Products>, bool) updateState) async{
 
 
 
-// Future<void> Productdelete(Function() updateState,String productId,List<Products> products) async {
-//
-//   String Temperaturesurl='https://crud.teamrabbil.com/api/v1/DeleteProduct/$productId';
-//   Uri uri=Uri.parse(Temperaturesurl);
-//   Response response =await get(uri);
-//   if(response.statusCode==200) {
-//     products.where((product) => product.id == productId).toList();
-//     updateState();
-//   }
-//
-//
-//
-// }
+Future<void> Productdelete(Function(List<Products>) updateState,String productId,List<Products> products,context) async {
+
+  dialogBox(() async {
+  String Temperaturesurl='https://crud.teamrabbil.com/api/v1/DeleteProduct/$productId';
+  Uri uri=Uri.parse(Temperaturesurl);
+  Response response =await get(uri);
+  if (response.statusCode == 200) {
+  List<Products> newproducts= products.where((product) => product.id != productId).toList();
+  updateState(newproducts);
+   snackbar(context, 'Product deleted successfully');
+  Navigator.of(context).pop();
+  } else {
+    snackbar(context, 'Failed to delete the product');
+
+  }
+  }, context,"Alert Box",'Are you sure you want to delete this item?');
+}
 
 

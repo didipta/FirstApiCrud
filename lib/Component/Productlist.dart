@@ -98,7 +98,7 @@ class Productlist extends StatelessWidget{
                     children: [
                       IconButton(onPressed: (){}, icon: const Icon(Icons.edit,size: 18,color: Colors.grey,)),
                       IconButton(onPressed: (){
-                        handeldelete(products[index].id);
+                        handeldelete(products[index].id,context);
                       }, icon: const Icon(Icons.delete_outline_sharp,size: 18,color: Colors.red,)),
 
                     ],
