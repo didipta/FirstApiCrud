@@ -35,12 +35,12 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void deleteProduct(String id,context) async {
+  void deleteProduct(String id,String name,context) async {
     await Productdelete((newProducts) {
       setState(() {
         products=newProducts;
       });
-    },id, products,context);
+    },id,name, products,context);
 
 
   }
@@ -85,6 +85,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black87,
         onPressed: (){
           Navigator.pushNamed(context, RouterPath.productfrom,arguments:null );
         },

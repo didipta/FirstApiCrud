@@ -37,7 +37,7 @@ Future<void> getproducts(Function(List<Products>, bool) updateState) async{
 
 
 
-Future<void> Productdelete(Function(List<Products>) updateState,String productId,List<Products> products,context) async {
+Future<void> Productdelete(Function(List<Products>) updateState,String productId,name,List<Products> products,context) async {
 
   dialogBox(() async {
   String Temperaturesurl='https://crud.teamrabbil.com/api/v1/DeleteProduct/$productId';
@@ -52,7 +52,7 @@ Future<void> Productdelete(Function(List<Products>) updateState,String productId
     snackbar(context, 'Failed to delete the product');
 
   }
-  }, context,"Alert Box",'Are you sure you want to delete this item?');
+  }, context,name,'Are you sure you want to delete this item?');
 }
 
 
