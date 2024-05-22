@@ -13,3 +13,18 @@ ButtonStyle buttonStyle(colors) {
     padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 16, vertical: 10)), // Button padding
   );
 }
+
+BoxDecoration boxDecoration(){
+  return BoxDecoration(
+    color: null,
+    borderRadius: BorderRadius.circular(12.0),
+    // boxShadow: [
+    //   BoxShadow(
+    //     color: Colors.black26,
+    //     blurRadius: 1.0,
+    //     spreadRadius: 1.0,
+    //     offset: Offset(0, 0),
+    //   ),
+    // ],
+  );
+}

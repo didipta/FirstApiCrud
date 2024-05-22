@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 import 'package:crudass/Model/Product.dart';
+import 'package:crudass/Router/RouterPath.dart';
 import 'package:crudass/Utils/DailogBox.dart';
 import 'package:crudass/Utils/SnackBar.dart';
 import 'package:crudass/style/style.dart';
@@ -55,3 +56,85 @@ Future<void> Productdelete(Function(List<Products>) updateState,String productId
 }
 
 
+Future<void> addProduct(Img,ProductCode,ProductName,Qty,TotalPrice,UnitPrice,context,Function(bool) update) async {
+  bool InProgress = true;
+  update(InProgress);
+  // Step 1: Set Url
+  const String addNewProductUrl =
+      'https://crud.teamrabbil.com/api/v1/CreateProduct';
+
+  // Step 2:  Prepare data
+  Map<String, dynamic> inputData = {
+    "Img": Img.text.trim(),
+    "ProductCode": ProductCode.text.trim(),
+    "ProductName": ProductName.text.trim(),
+    "Qty": Qty.text,
+    "TotalPrice": TotalPrice.text,
+    "UnitPrice": UnitPrice.text
+  };
+
+  // URI -> Uniform Resource Identifier
+  // Step 3: Parse
+  Uri uri = Uri.parse(addNewProductUrl);
+  // Step 4: Send Request
+  Response response = await post(
+    uri,
+    body: jsonEncode(inputData),
+    headers: {'content-type': 'application/json'},
+  );
+  print(response.statusCode);
+  print(response.body);
+  print(response.headers);
+
+  InProgress = false;
+  update(InProgress);
+
+  if (response.statusCode == 200) {
+    snackbar(context, 'Add to product Succefully');
+    Navigator.pushNamedAndRemoveUntil(context, RouterPath.homepath, (route) => false);
+  } else {
+    snackbar(context, 'Add to product Fail');
+  }
+}
+
+
+Future<void> UpdateProduct(id,Img,ProductCode,ProductName,Qty,TotalPrice,UnitPrice,context,Function(bool) update) async {
+  bool InProgress = true;
+  update(InProgress);
+  // Step 1: Set Url
+   String addNewProductUrl =
+      'https://crud.teamrabbil.com/api/v1/UpdateProduct/$id';
+
+  // Step 2:  Prepare data
+  Map<String, dynamic> inputData = {
+    "Img": Img.text.trim(),
+    "ProductCode": ProductCode.text.trim(),
+    "ProductName": ProductName.text.trim(),
+    "Qty": Qty.text,
+    "TotalPrice": TotalPrice.text,
+    "UnitPrice": UnitPrice.text
+  };
+
+  // URI -> Uniform Resource Identifier
+  // Step 3: Parse
+  Uri uri = Uri.parse(addNewProductUrl);
+  // Step 4: Send Request
+  Response response = await post(
+    uri,
+    body: jsonEncode(inputData),
+    headers: {'content-type': 'application/json'},
+  );
+  print(response.statusCode);
+  print(response.body);
+  print(response.headers);
+
+  InProgress = false;
+  update(InProgress);
+
+  if (response.statusCode == 200) {
+    snackbar(context, 'Update product Succefully');
+    Navigator.pushNamedAndRemoveUntil(context, RouterPath.homepath, (route) => false);
+  } else {
+    snackbar(context, 'Update product Fail');
+  }
+}

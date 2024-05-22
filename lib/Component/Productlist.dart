@@ -91,7 +91,7 @@ class Productlist extends StatelessWidget{
                   Row(
                     children: [
                       IconButton(onPressed: (){
-                        Navigator.pushNamed(context, RouterPath.productfrom,arguments:products[index] );
+                        Navigator.pushNamed(context, RouterPath.productfrom,arguments:products[index]);
                       }, icon: const Icon(Icons.edit,size: 18,color: Colors.grey,)),
                       IconButton(onPressed: (){
                         handeldelete(products[index].id,context);

@@ -1,6 +1,7 @@
 
 import 'package:crudass/Component/Homepage.dart';
 import 'package:crudass/Component/Productfrom.dart';
+import 'package:crudass/Model/Product.dart';
 import 'package:flutter/material.dart';
 
 import 'RouterPath.dart';
@@ -13,7 +14,11 @@ MaterialPageRoute? materialPageRoute(RouteSettings settings){
       widget = const HomePage();
       break;
     case RouterPath.productfrom:
-      widget=ProductFrom();
+      Products? product=settings.arguments as Products?;
+      print(product);
+
+      widget=ProductFrom(products:product);
+
       break;
 
   }
