@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:crudass/Apicall/Apicall.dart';
 import 'package:crudass/Component/Productlist.dart';
 import 'package:crudass/Model/Product.dart';
+import 'package:crudass/Router/RouterPath.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -54,6 +55,7 @@ class _HomePageState extends State<HomePage> {
           fontSize: 18,
           fontWeight: FontWeight.bold
         ),),
+
         backgroundColor: Colors.white,
         elevation: 0,
       ),
@@ -73,7 +75,9 @@ class _HomePageState extends State<HomePage> {
       ):Productlist(products: products,handeldelete:deleteProduct) ,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: (){
+          Navigator.pushNamed(context, RouterPath.productfrom,arguments:null );
+        },
         child: const Icon(Icons.add),
       ),
     );

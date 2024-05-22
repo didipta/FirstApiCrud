@@ -58,7 +58,7 @@ void dialogBox(Function() function, BuildContext context,String title,String lab
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () async {
-                        
+
                         function();
                       },
                       style: buttonStyle(Colors.red),

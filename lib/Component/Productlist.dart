@@ -1,7 +1,6 @@
 
 import 'package:crudass/Model/Product.dart';
 import 'package:crudass/Router/RouterPath.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 
@@ -24,12 +23,7 @@ class Productlist extends StatelessWidget{
             products.length,
                 (index) => MouseRegion(
                   cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-
-                    onTap: (){
-                      Navigator.pushNamed(context, RouterPath.detailpage,arguments:products[index] );
-                    },
-                    child: Container(
+                  child: Container(
 
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -57,7 +51,7 @@ class Productlist extends StatelessWidget{
                             borderRadius: BorderRadius.circular(12),
                             child: Image.network(
                               products[index].img,
-                              fit: BoxFit.fill,
+                              fit: BoxFit.cover,
                               height: 80,
                               width: 80,
 
@@ -96,7 +90,9 @@ class Productlist extends StatelessWidget{
                   ),
                   Row(
                     children: [
-                      IconButton(onPressed: (){}, icon: const Icon(Icons.edit,size: 18,color: Colors.grey,)),
+                      IconButton(onPressed: (){
+                        Navigator.pushNamed(context, RouterPath.productfrom,arguments:products[index] );
+                      }, icon: const Icon(Icons.edit,size: 18,color: Colors.grey,)),
                       IconButton(onPressed: (){
                         handeldelete(products[index].id,context);
                       }, icon: const Icon(Icons.delete_outline_sharp,size: 18,color: Colors.red,)),
@@ -108,7 +104,6 @@ class Productlist extends StatelessWidget{
             ),
                   ),
                 )
-        ),
 
 
 
