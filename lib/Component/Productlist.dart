@@ -7,7 +7,8 @@ import 'package:responsive_grid_list/responsive_grid_list.dart';
 
 class Productlist extends StatelessWidget{
   final List<Products> products;
-  const Productlist({Key? key, required this.products}) : super(key: key);
+  final handeldelete ;
+  const Productlist({Key? key, required this.products, this.handeldelete}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +83,7 @@ class Productlist extends StatelessWidget{
                                 ),
                               SizedBox(height: 10,),
                               Text("Tk "+
-                                products[index].unitPrice,
+                                products[index].unitPrice.toString(),
                                 style: TextStyle(fontSize: 14,color: Colors.blue,fontWeight: FontWeight.bold), // Adjust the text style as needed
                               ),
 
@@ -97,7 +98,7 @@ class Productlist extends StatelessWidget{
                     children: [
                       IconButton(onPressed: (){}, icon: const Icon(Icons.edit,size: 18,color: Colors.grey,)),
                       IconButton(onPressed: (){
-
+                        handeldelete(products[index].id);
                       }, icon: const Icon(Icons.delete_outline_sharp,size: 18,color: Colors.red,)),
 
                     ],
